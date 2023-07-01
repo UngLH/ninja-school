@@ -75,7 +75,15 @@ public class GoblinEnemy : MonoBehaviour
 //             player.TakeDamage(damage);
 //     }
     public void TakeDamage(int damagePlayer) {
-        currentHealth -= damagePlayer;
+        int rd = UnityEngine.Random.Range(1, PlayerStatus.crist);
+        Debug.Log(rd);
+        if(rd <= PlayerStatus.crist)
+        {
+            currentHealth -= damagePlayer*2;
+        } else
+        {
+            currentHealth -= damagePlayer;
+        }
         anim.SetTrigger("TakeHit");
 
         if(currentHealth <=0)

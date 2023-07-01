@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public static int maxHealth = 100;
+    public static int damage = 20;
+    public static int crist = 0;
     public int currentHealth;
     public Heartbar hearthBar;
     [SerializeField] private float timeDelay = 0.5f;
@@ -21,16 +23,13 @@ public class PlayerStatus : MonoBehaviour
         hearthBar.setHealth(currentHealth);
     }
 
-    public void TakeDamage(int dame){
-        DelayAction(timeDelay);
-        currentHealth -= dame;
+    public void setMaxHealth()
+    {
+        maxHealth += 20;
+        Debug.Log(maxHealth);
     }
 
-    IEnumerator DelayAction(float delayTime)
-{
-   //Wait for the specified delay time before continuing.
-   yield return new WaitForSeconds(delayTime);
- 
-   //Do the action after the delay time has finished.
-}
+    public void TakeDamage(int dame){
+        currentHealth -= dame;
+    }
 }
