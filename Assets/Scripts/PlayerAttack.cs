@@ -11,7 +11,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private int attackDamage = 20;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private int crist;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -20,6 +21,8 @@ public class PlayerAttack : MonoBehaviour
     {
         amin = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        attackDamage = PlayerStatus.damage;
+        crist = PlayerStatus.crist;
     }
 
     // Update is called once per frame
