@@ -9,12 +9,14 @@ public class PlayerStatus : MonoBehaviour
     public static int crist = 0;
     public int currentHealth;
     public Heartbar hearthBar;
+    private Animator amin;
     [SerializeField] private float timeDelay = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
         hearthBar.setMaxHealth(maxHealth);
         currentHealth = maxHealth;
+        amin = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,5 +33,17 @@ public class PlayerStatus : MonoBehaviour
 
     public void TakeDamage(int dame){
         currentHealth -= dame;
+        amin.SetTrigger("TakeHit");
+        if(currentHealth <=0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        amin.SetBool("IsDead", true);
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }
