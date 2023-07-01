@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
     private BoxCollider2D coll;
     private Animator amin;
-    public Heartbar hearthBar;
     float dirX;
     private bool                m_rolling = false;
     private bool m_attacking = false;
@@ -18,8 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float m_rollForce = 6.0f;
-    public int maxHealth = 100;
-    public int currentHealth;
+    
     private enum MovementState { idle, running, jumping, failing, rolling }
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         amin = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
-        hearthBar.setMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -57,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
 
         
         updateAnimationMove();
-        Debug.Log(m_attacking);
     }
 
     private void updateAnimationMove() {

@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private float attackDamage = 20f;
+    [SerializeField] private int attackDamage = 20;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage);
         }
     }
 

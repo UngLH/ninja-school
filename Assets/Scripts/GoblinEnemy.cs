@@ -18,6 +18,8 @@ public class GoblinEnemy : MonoBehaviour
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
+    public int maxHealth = 100;
+    public int currentHealth;
 
     //References
     private Animator anim;
@@ -27,6 +29,7 @@ public class GoblinEnemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<GoblinPatrol>();
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -40,6 +43,7 @@ public class GoblinEnemy : MonoBehaviour
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("Attack1");
+                
             }
         }
 
@@ -54,8 +58,7 @@ public class GoblinEnemy : MonoBehaviour
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0, Vector2.left, 0, playerLayer);
 
-        // if (hit.collider != null)
-        //     playerHealth = hit.transform.GetComponent<Health>();
+        
 
         return hit.collider != null;
     }
@@ -66,9 +69,25 @@ public class GoblinEnemy : MonoBehaviour
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
-    // private void DamagePlayer()
-    // {
-    //     if (PlayerInSight())
-    //         playerHealth.TakeDamage(damage);
-    // }
+//     private void DamagePlayer()
+//     {
+//         if (PlayerInSight())
+//             player.TakeDamage(damage);
+//     }
+    public void TakeDamage(int damagePlayer) {
+        currentHealth -= damagePlayer;
+        anim.SetTrigger("TakeHit");
+
+        if(currentHealth <=0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        anim.SetBool("IsDead", true);
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    }
 }
