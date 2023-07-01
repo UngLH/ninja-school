@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 616838752}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,6 +525,8 @@ MonoBehaviour:
   attackPoint: {fileID: 460056387}
   attackRange: 1.83
   attackDamage: 20
+  crist: 0
+  currentHealth: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -541,8 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3214cd8cf3734ab44b4d07ac8caf2369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 0
   hearthBar: {fileID: 2077734760}
   timeDelay: 1.5
 --- !u!1 &1092955518
