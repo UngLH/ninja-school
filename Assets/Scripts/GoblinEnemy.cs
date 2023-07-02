@@ -82,7 +82,7 @@ public class GoblinEnemy : MonoBehaviour
 //     }
     public void TakeDamage(int damagePlayer) {
         cooldownTimer = 0;
-        int rd = UnityEngine.Random.Range(1, PlayerStatus.crist);
+        int rd = UnityEngine.Random.Range(1, 100);
         Debug.Log(rd);
         if(rd <= PlayerStatus.crist)
         {
