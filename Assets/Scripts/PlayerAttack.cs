@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private float attackDamage = 20f;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private int crist;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private Text text;
+    [SerializeField] private AudioSource attackSound;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -20,6 +25,9 @@ public class PlayerAttack : MonoBehaviour
     {
         amin = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        attackDamage = PlayerStatus.damage;
+        crist = PlayerStatus.crist;
+        text.text = PlayerStatus.coin.ToString();
     }
 
     // Update is called once per frame
@@ -28,11 +36,13 @@ public class PlayerAttack : MonoBehaviour
         m_timeSinceAttack += Time.deltaTime;
         if(Input.GetKeyDown("j"))
         {
+            attackSound.Play();
             Attack();
         } else if(Input.GetKeyDown("k"))
         {
             amin.SetTrigger("Block");
         }
+        currentHealth = PlayerStatus.currentHealth;
     }
 
     void Attack()
@@ -54,10 +64,19 @@ public class PlayerAttack : MonoBehaviour
         m_timeSinceAttack = 0.0f;
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach(Collider2D enemy in hitEnemies)
+        if(m_currentAttack == 3)
         {
-            Debug.Log("We hit " + enemy.name);
+            foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage + 5);
+        }
+        }
+        else
+        {
+            foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage);
+        }
         }
     }
 
@@ -67,5 +86,11 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);    
+    }
+
+    public void PlayerKillEnemy()
+    {
+        PlayerStatus.coin += 2;
+        text.text = PlayerStatus.coin.ToString();
     }
 }
