@@ -6,7 +6,8 @@ public class PlayerStatus : MonoBehaviour
 {
     public static int maxHealth = 100;
     public static int damage = 20;
-    public static int crist = 0;
+    public static int crist = 20;
+    public static int coin = 20;
     public static int currentHealth;
     public Heartbar hearthBar;
     private Animator amin;

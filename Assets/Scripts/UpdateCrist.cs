@@ -7,6 +7,8 @@ public class UpdateCrist : MonoBehaviour
 {
     public Image[] image;
     public Button addCrist;
+    public Text textInfo;
+    private int cost;
 
     void Update()
     {
@@ -19,10 +21,32 @@ public class UpdateCrist : MonoBehaviour
         {
             addCrist.gameObject.SetActive(false);
         }
+        cost = 5*(n+1);
+        if(PlayerStatus.coin < cost)
+        {
+            addCrist.interactable = false;
+        }
+    }
+    private void checkCoin()
+    {
+        
     }
     
     public void SetCrist()
     {
+        PlayerStatus.coin -= cost;
         PlayerStatus.crist += 20;
+        cost += 5;
+        showInfo();
+    }
+
+    public void showInfo()
+    {
+        textInfo.text = "You need " + cost.ToString() + " coin to upgrade this";
+    }
+
+    public void resetInfo()
+    {
+        textInfo.text = "";
     }
 }

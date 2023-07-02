@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int attackDamage;
     [SerializeField] private int crist;
     [SerializeField] private int currentHealth;
+    [SerializeField] private Text text;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -72,5 +74,11 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);    
+    }
+
+    public void PlayerKillEnemy()
+    {
+        PlayerStatus.coin += 2;
+        text.text = PlayerStatus.coin.ToString();
     }
 }
