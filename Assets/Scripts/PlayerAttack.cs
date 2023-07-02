@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private int attackDamage;
     [SerializeField] private int crist;
+    [SerializeField] private int currentHealth;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -36,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
         {
             amin.SetTrigger("Block");
         }
+        currentHealth = PlayerStatus.currentHealth;
     }
 
     void Attack()
