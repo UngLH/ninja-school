@@ -35,6 +35,7 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(int dame){
         currentHealth -= dame;
         amin.SetTrigger("TakeHit");
+        CharacterEvents.characterDamaged.Invoke(gameObject, dame);
         if(currentHealth <=0)
         {
             hearthBar.setHealth(currentHealth);
