@@ -8,6 +8,8 @@ public class UpdateHealth : MonoBehaviour
     // Start is called before the first frame update
     public Image[] image;
     public Button addHealth;
+    public Text textInfo;
+    private int cost;
 
     void Update()
     {
@@ -20,10 +22,28 @@ public class UpdateHealth : MonoBehaviour
         {
             addHealth.gameObject.SetActive(false);
         }
+        cost = 5*(n+1);
+        if(PlayerStatus.coin < cost)
+        {
+            addHealth.interactable = false;
+        }
     }
     
     public void SetHealth()
     {
+        PlayerStatus.coin -= cost;
         PlayerStatus.maxHealth += 25;
+        cost += 5;
+        showInfo();
+    }
+
+    public void showInfo()
+    {
+        textInfo.text = "You need " + cost.ToString() + " coin to upgrade this";
+    }
+
+    public void resetInfo()
+    {
+        textInfo.text = "";
     }
 }

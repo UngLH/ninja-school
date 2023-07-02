@@ -7,6 +7,8 @@ public class UpdateDamage : MonoBehaviour
 {
     public Image[] image;
     public Button addDamage;
+    public Text textInfo;
+    private int cost;
 
     void Update()
     {
@@ -19,10 +21,29 @@ public class UpdateDamage : MonoBehaviour
         {
             addDamage.gameObject.SetActive(false);
         }
+        cost = 5*(n+1);
+
+        if(PlayerStatus.coin < cost)
+        {
+            addDamage.interactable = false;
+        }
     }
     
     public void SetDamage()
     {
+        PlayerStatus.coin -= cost;
         PlayerStatus.damage += 10;
+        cost += 5;
+        showInfo();
+    }
+
+    public void showInfo()
+    {
+        textInfo.text = "You need " + cost.ToString() + " coin to upgrade this";
+    }
+
+    public void resetInfo()
+    {
+        textInfo.text = "";
     }
 }
