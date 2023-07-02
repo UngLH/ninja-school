@@ -6,12 +6,15 @@ public class PlayerStatus : MonoBehaviour
 {
     public static int maxHealth = 100;
     public static int damage = 20;
-    public static int crist = 20;
+    public static int crist = 0;
     public static int coin = 20;
     public static int currentHealth;
     public Heartbar hearthBar;
     private Animator amin;
     [SerializeField] private float timeDelay = 0.5f;
+    [SerializeField] private AudioSource hurtSound;
+    [SerializeField] private AudioSource deadSound;
+    [SerializeField] private AudioSource blockSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,17 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public void TakeDamage(int dame){
+        if(amin.GetCurrentAnimatorStateInfo(0).IsName("Player_blocking"))
+        {
+            blockSound.Play();
+            return;
+        }
+        if(amin.GetCurrentAnimatorStateInfo(0).IsName("Player_rolling"))
+        {
+            return;
+        }
         currentHealth -= dame;
+        hurtSound.Play();
         amin.SetTrigger("TakeHit");
         CharacterEvents.characterDamaged.Invoke(gameObject, dame);
         if(currentHealth <=0)
@@ -45,7 +58,10 @@ public class PlayerStatus : MonoBehaviour
 
     void Die()
     {
+        deadSound.Play();
         amin.SetBool("IsDead", true);
         this.enabled = false;
+        GetComponent<Rigidbody2D>().freezeRotation = true;
+        GetComponent<Collider2D>().enabled = false;
     }
 }

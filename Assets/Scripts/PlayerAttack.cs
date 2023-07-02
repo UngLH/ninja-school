@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int crist;
     [SerializeField] private int currentHealth;
     [SerializeField] private Text text;
+    [SerializeField] private AudioSource attackSound;
     public LayerMask enemyLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
@@ -26,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         attackDamage = PlayerStatus.damage;
         crist = PlayerStatus.crist;
+        text.text = PlayerStatus.coin.ToString();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         m_timeSinceAttack += Time.deltaTime;
         if(Input.GetKeyDown("j"))
         {
+            attackSound.Play();
             Attack();
         } else if(Input.GetKeyDown("k"))
         {
@@ -61,10 +64,19 @@ public class PlayerAttack : MonoBehaviour
         m_timeSinceAttack = 0.0f;
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach(Collider2D enemy in hitEnemies)
+        if(m_currentAttack == 3)
+        {
+            foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage + 5);
+        }
+        }
+        else
+        {
+            foreach(Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage);
+        }
         }
     }
 

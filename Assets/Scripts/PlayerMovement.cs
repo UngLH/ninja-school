@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float m_rollForce = 6.0f;
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource scrollSound;
     
     private enum MovementState { idle, running, jumping, failing, rolling }
     // Start is called before the first frame update
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(dirX*moveSpeed, rb.velocity.y);
 
         if (Input.GetKeyDown("w") && IsGrounded() && !amin.GetCurrentAnimatorStateInfo(0).IsName("Player_rolling") ) {
+            jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
@@ -84,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown("l"))
         {
+            scrollSound.Play();
             m_rolling = true;
             rb.velocity = new Vector2(dirX*m_rollForce, rb.velocity.y);
             state = MovementState.rolling;
