@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1638403268}
-  attackRange: 1.83
+  attackRange: 3.14
   attackDamage: 0
   crist: 0
   currentHealth: 0
