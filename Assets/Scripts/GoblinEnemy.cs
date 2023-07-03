@@ -53,6 +53,7 @@ public class GoblinEnemy : MonoBehaviour
             }
         }
 
+       
         if (enemyPatrol != null)
             enemyPatrol.enabled = !PlayerInSight();
     }
@@ -84,18 +85,23 @@ public class GoblinEnemy : MonoBehaviour
         cooldownTimer = 0;
         int rd = UnityEngine.Random.Range(1, 100);
         Debug.Log(rd);
+       
         if(rd <= PlayerStatus.crist)
         {
             currentHealth -= damagePlayer*2;
+            DamageTextManage.Myinstance.CreateText(transform.position, (damagePlayer * 2).ToString(), ColorType.SpecialDamage);
         } else
         {
             currentHealth -= damagePlayer;
+            DamageTextManage.Myinstance.CreateText(transform.position, damagePlayer.ToString(), ColorType.Damage);
         }
+       
         anim.SetTrigger("TakeHit");
 
         if(currentHealth <=0)
         {
             Die();
+            DamageTextManage.Myinstance.CreateText(transform.position, "2 Coins", ColorType.CoinPlus);
         }
     }
 
