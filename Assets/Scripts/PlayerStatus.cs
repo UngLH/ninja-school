@@ -8,8 +8,10 @@ public class PlayerStatus : MonoBehaviour
     public static int damage = 20;
     public static int crist = 0;
     public static int coin = 20;
+    public static int lv = 1;
     public static int currentHealth;
     public Heartbar hearthBar;
+    public GameObject modalWin;
     private Animator amin;
     [SerializeField] private float timeDelay = 0.5f;
     [SerializeField] private AudioSource hurtSound;
@@ -21,6 +23,7 @@ public class PlayerStatus : MonoBehaviour
         hearthBar.setMaxHealth(maxHealth);
         currentHealth = maxHealth;
         amin = GetComponent<Animator>();
+        modalWin.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,5 +66,11 @@ public class PlayerStatus : MonoBehaviour
         this.enabled = false;
         GetComponent<Rigidbody2D>().freezeRotation = true;
         GetComponent<Collider2D>().enabled = false;
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("Finish"))
+        {
+            modalWin.gameObject.SetActive(true);
+        }
     }
 }
