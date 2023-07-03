@@ -13,6 +13,6 @@ public class UpdatePlayer : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Map" + PlayerStatus.lv);
     }
 }
