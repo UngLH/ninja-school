@@ -71,6 +71,7 @@ public class PlayerStatus : MonoBehaviour
         if(other.gameObject.CompareTag("Finish"))
         {
             modalWin.gameObject.SetActive(true);
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }
 }
