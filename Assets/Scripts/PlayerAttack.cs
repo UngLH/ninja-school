@@ -68,14 +68,40 @@ public class PlayerAttack : MonoBehaviour
         {
             foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage + 5);
+            if (enemy.GetComponent<SkeletonEnemy>() != null)
+            {
+                enemy.GetComponent<SkeletonEnemy>().TakeDamage(attackDamage + 5);
+            }
+
+            if (enemy.GetComponent<GoblinEnemy>() != null)
+            {
+                enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage +5 );
+            }
+            if (enemy.GetComponent<MonsterEnemy>() != null)
+            {
+                enemy.GetComponent<MonsterEnemy>().TakeDamage(attackDamage);
+            }
+            
+           
         }
         }
         else
         {
             foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage);
+            if (enemy.GetComponent<SkeletonEnemy>() != null)
+            {
+                enemy.GetComponent<SkeletonEnemy>().TakeDamage(attackDamage);
+            }
+
+            if (enemy.GetComponent<GoblinEnemy>() != null)
+            {
+                enemy.GetComponent<GoblinEnemy>().TakeDamage(attackDamage);
+            }
+            if (enemy.GetComponent<MonsterEnemy>() != null)
+            {
+                enemy.GetComponent<MonsterEnemy>().TakeDamage(attackDamage);
+            }
         }
         }
     }
