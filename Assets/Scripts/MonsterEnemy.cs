@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterEnemy : MonoBehaviour
 {
    [Header ("Attack Parameters")]
+      public BossBar bossBar;
       [SerializeField] private float attackCooldown;
       [SerializeField] private float range;
       [SerializeField] private int damage;
@@ -14,6 +15,7 @@ public class MonsterEnemy : MonoBehaviour
       [SerializeField] private BoxCollider2D boxCollider;
   
       [Header("Player Layer")]
+      [SerializeField] private Transform player;
       [SerializeField] private LayerMask playerLayer;
       private float cooldownTimer = Mathf.Infinity;
       public int maxHealth = 600;
@@ -25,12 +27,15 @@ public class MonsterEnemy : MonoBehaviour
       private RaycastHit2D hit;
       public GameObject winGame;
   
-      private void Awake()
+      private void Start()
       {
           winGame.gameObject.SetActive(false);
           anim = GetComponent<Animator>();
           enemyPatrol = GetComponentInParent<MonsterPatrol>();
+          bossBar.setMaxHealth(maxHealth);
+          Debug.Log(maxHealth);
           currentHealth = maxHealth;
+          bossBar.gameObject.SetActive(false);
       }
       
       public enum AttackType
@@ -41,8 +46,11 @@ public class MonsterEnemy : MonoBehaviour
       private AttackType currentAttack = AttackType.Attack1;
       private void Update()
       {
-          
-  
+          if((float)player.position.x >=26.9396f)
+          {
+            bossBar.gameObject.SetActive(true);
+          }
+        bossBar.setHealth(currentHealth);
           //Attack only when player in sight?
           if (PlayerInSight())
           {
@@ -130,7 +138,8 @@ public class MonsterEnemy : MonoBehaviour
       }
   
       void Die()
-      {
+      {    
+          bossBar.setHealth(currentHealth);
           anim.SetBool("IsDead", true);
           GetComponent<Collider2D>().enabled = false;
           this.enabled = false;
