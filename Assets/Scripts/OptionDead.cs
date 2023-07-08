@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OptionEnd : MonoBehaviour
+public class OptionDead : MonoBehaviour
 {
-    public  void GoToMenu()
+    // Start is called before the first frame update
+    public void GoToMenu()
     {
         PlayerStatus.lv = 1;
         PlayerStatus.coin = 0;

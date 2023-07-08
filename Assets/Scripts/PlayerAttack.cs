@@ -27,7 +27,10 @@ public class PlayerAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         attackDamage = PlayerStatus.damage;
         crist = PlayerStatus.crist;
-        text.text = PlayerStatus.coin.ToString();
+        if(text)
+        {
+            text.text = PlayerStatus.coin.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -89,6 +92,7 @@ public class PlayerAttack : MonoBehaviour
         {
             foreach(Collider2D enemy in hitEnemies)
         {
+            Debug.Log(enemy.name);
             if (enemy.GetComponent<SkeletonEnemy>() != null)
             {
                 enemy.GetComponent<SkeletonEnemy>().TakeDamage(attackDamage);
@@ -116,7 +120,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void PlayerKillEnemy()
     {
-        PlayerStatus.coin += 2;
-        text.text = PlayerStatus.coin.ToString();
+        if(text){
+            PlayerStatus.coin += 2;
+            text.text = PlayerStatus.coin.ToString();
+        }
     }
 }
