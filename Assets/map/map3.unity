@@ -575,9 +575,9 @@ GameObject:
   - component: {fileID: 399435830}
   - component: {fileID: 399435833}
   - component: {fileID: 399435832}
-  - component: {fileID: 399435831}
+  - component: {fileID: 399435834}
   m_Layer: 5
-  m_Name: Option
+  m_Name: OptionEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,18 +605,6 @@ RectTransform:
   m_AnchoredPosition: {x: 8.916809, y: -28.8084}
   m_SizeDelta: {x: -580.2837, y: -277.1094}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &399435831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399435829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a843ff4880263ce458592095b4ce9c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &399435832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +643,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399435829}
   m_CullTransparentMesh: 1
+--- !u!114 &399435834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399435829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35003715e2263ff40a4c0ef2c429676e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439670404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 399435831}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionWin, Assembly-CSharp
         m_MethodName: GoToUpgrade
         m_Mode: 1
