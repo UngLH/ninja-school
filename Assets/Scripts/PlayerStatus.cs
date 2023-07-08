@@ -12,7 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public static int currentHealth;
     public Heartbar hearthBar;
     public GameObject modalWin;
-    public GameObject modalEnd;
+    public GameObject modalDead;
     private Animator amin;
     [SerializeField] private float timeDelay = 0.5f;
     [SerializeField] private AudioSource hurtSound;
@@ -25,7 +25,7 @@ public class PlayerStatus : MonoBehaviour
         currentHealth = maxHealth;
         amin = GetComponent<Animator>();
         modalWin.gameObject.SetActive(false);
-        modalEnd.gameObject.SetActive(false);
+        modalDead.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,7 +53,6 @@ public class PlayerStatus : MonoBehaviour
         currentHealth -= dame;
         hurtSound.Play();
         amin.SetTrigger("TakeHit");
-        CharacterEvents.characterDamaged.Invoke(gameObject, dame);
         if(currentHealth <=0)
         {
             hearthBar.setHealth(currentHealth);
@@ -65,6 +64,7 @@ public class PlayerStatus : MonoBehaviour
     {
         deadSound.Play();
         amin.SetBool("IsDead", true);
+        modalDead.gameObject.SetActive(true);
         this.enabled = false;
         // modalEnd.gameObject.SetActive(true);
         GetComponent<Rigidbody2D>().freezeRotation = true;
