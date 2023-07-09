@@ -1651,7 +1651,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ch\xFAc m\u1EEBng, b\u1EA1n \u0111\xE3 chi\u1EBFn th\u1EB1ng."
+  m_text: "M\u1ED9t giai tho\u1EA1i v\u1EC1 ch\xE0ng hi\u1EC7p s\u0129 d\u0169ng
+    c\u1EA3m ti\xEAu di\u1EC7t qu\xE1i v\u1EADt, m\u1EDF ra con \u0111\u01B0\u1EDDng
+    t\u01B0\u01A1i s\xE1ng cho con ng\u01B0\u1EDDi \u0111\xE3 \u0111\u01B0\u1EE3c
+    l\u01B0u truy\u1EC1n m\xE3i m\xE3i v\u1EC1 sau.\nCh\xFAc m\u1EEBng b\u1EA1n \u0111\xE3
+    chi\u1EBFn th\u1EAFng!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1714,7 +1718,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -94.41437, y: -109.5206, z: -109.52063, w: 65.145935}
+  m_margin: {x: -376.34604, y: -201.1484, z: -361.84955, w: 11.578964}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
