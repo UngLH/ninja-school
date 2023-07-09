@@ -141,9 +141,9 @@ public class MonsterEnemy : MonoBehaviour
       {    
           bossBar.setHealth(currentHealth);
           anim.SetBool("IsDead", true);
+          hit.collider.GetComponent<PlayerAttack>().PlayerKillEnemy();
           GetComponent<Collider2D>().enabled = false;
           this.enabled = false;
-          hit.collider.GetComponent<PlayerAttack>().PlayerKillEnemy();
           winGame.gameObject.SetActive(true);
       }
 }
